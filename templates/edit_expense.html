@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Expense - Budget Planner{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Expense</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('edit_expense', expense_id=expense.id) }}">
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">
+                            <i class="fas fa-rupee-sign me-1"></i>Amount <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" class="form-control" id="amount" name="amount" 
+                               value="{{ expense.amount }}" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">
+                            <i class="fas fa-tag me-1"></i>Category <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="">Select expense category...</option>
+                            <option value="Food" {% if expense.category == 'Food' %}selected{% endif %}>Food & Dining</option>
+                            <option value="Transport" {% if expense.category == 'Transport' %}selected{% endif %}>Transportation</option>
+                            <option value="Utilities" {% if expense.category == 'Utilities' %}selected{% endif %}>Utilities</option>
+                            <option value="Rent" {% if expense.category == 'Rent' %}selected{% endif %}>Rent/Mortgage</option>
+                            <option value="Entertainment" {% if expense.category == 'Entertainment' %}selected{% endif %}>Entertainment</option>
+                            <option value="Shopping" {% if expense.category == 'Shopping' %}selected{% endif %}>Shopping</option>
+                            <option value="Healthcare" {% if expense.category == 'Healthcare' %}selected{% endif %}>Healthcare</option>
+                            <option value="Education" {% if expense.category == 'Education' %}selected{% endif %}>Education</option>
+                            <option value="Insurance" {% if expense.category == 'Insurance' %}selected{% endif %}>Insurance</option>
+                            <option value="Personal" {% if expense.category == 'Personal' %}selected{% endif %}>Personal Care</option>
+                            <option value="Travel" {% if expense.category == 'Travel' %}selected{% endif %}>Travel</option>
+                            <option value="Other" {% if expense.category == 'Other' %}selected{% endif %}>Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">
+                            <i class="fas fa-calendar me-1"></i>Date
+                        </label>
+                        <input type="date" class="form-control" id="date" name="date" 
+                               value="{{ expense.date.strftime('%Y-%m-%d') if expense.date else '' }}">
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('transactions') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Update Expense
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

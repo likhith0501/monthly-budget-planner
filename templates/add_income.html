@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Add Income - Budget Planner{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Add New Income</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('add_income') }}">
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">
+                            <i class="fas fa-rupee-sign me-1"></i>Amount <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" class="form-control" id="amount" name="amount" 
+                               placeholder="Enter amount" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="source" class="form-label">
+                            <i class="fas fa-tag me-1"></i>Source <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select" id="source" name="source" required>
+                            <option value="">Select income source...</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Freelance">Freelance</option>
+                            <option value="Business">Business</option>
+                            <option value="Investment">Investment</option>
+                            <option value="Rental">Rental Income</option>
+                            <option value="Interest">Interest</option>
+                            <option value="Dividend">Dividend</option>
+                            <option value="Bonus">Bonus</option>
+                            <option value="Gift">Gift</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">
+                            <i class="fas fa-calendar me-1"></i>Date
+                        </label>
+                        <input type="date" class="form-control" id="date" name="date">
+                        <div class="form-text">Leave empty for today's date</div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save me-1"></i>Save Income
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

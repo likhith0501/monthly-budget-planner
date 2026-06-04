@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Income - Budget Planner{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Income</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('edit_income', income_id=income.id) }}">
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">
+                            <i class="fas fa-rupee-sign me-1"></i>Amount <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" class="form-control" id="amount" name="amount" 
+                               value="{{ income.amount }}" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="source" class="form-label">
+                            <i class="fas fa-tag me-1"></i>Source <span class="text-danger">*</span>
+                        </label>
+                        <select class="form-select" id="source" name="source" required>
+                            <option value="">Select income source...</option>
+                            <option value="Salary" {% if income.source == 'Salary' %}selected{% endif %}>Salary</option>
+                            <option value="Freelance" {% if income.source == 'Freelance' %}selected{% endif %}>Freelance</option>
+                            <option value="Business" {% if income.source == 'Business' %}selected{% endif %}>Business</option>
+                            <option value="Investment" {% if income.source == 'Investment' %}selected{% endif %}>Investment</option>
+                            <option value="Rental" {% if income.source == 'Rental' %}selected{% endif %}>Rental Income</option>
+                            <option value="Interest" {% if income.source == 'Interest' %}selected{% endif %}>Interest</option>
+                            <option value="Dividend" {% if income.source == 'Dividend' %}selected{% endif %}>Dividend</option>
+                            <option value="Bonus" {% if income.source == 'Bonus' %}selected{% endif %}>Bonus</option>
+                            <option value="Gift" {% if income.source == 'Gift' %}selected{% endif %}>Gift</option>
+                            <option value="Other" {% if income.source == 'Other' %}selected{% endif %}>Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">
+                            <i class="fas fa-calendar me-1"></i>Date
+                        </label>
+                        <input type="date" class="form-control" id="date" name="date" 
+                               value="{{ income.date.strftime('%Y-%m-%d') if income.date else '' }}">
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('transactions') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Update Income
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
