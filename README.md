@@ -73,7 +73,8 @@ A modern, full-featured web application for managing personal finances built wit
    ```
 
 5. **Open your browser**
-   - Navigate to: http://127.0.0.1:5000
+   - Navigate to: https://monthly-buget-planner.vercel.app/login?next=%2F
+   - 
 
 ## 📁 Project Structure
 
