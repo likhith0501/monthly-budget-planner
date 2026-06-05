@@ -127,6 +127,31 @@ monthly-buget-planner/
 - Secure session management
 - User-specific data isolation
 
+## 🗄️ Database Options
+
+### SQLite (Default - for local development)
+- No setup required
+- Data stored in `instance/budget_planner.db`
+- **Note:** Data resets on redeploy with Vercel/Render free tier
+
+### Neon PostgreSQL (Recommended for production)
+Neon is a free, serverless PostgreSQL database that provides persistent data storage.
+
+**Setup Steps:**
+1. Go to [Neon](https://neon.tech) and sign up
+2. Create a new project
+3. Copy the connection string (looks like `postgres://username:password@ep-xxx.aws.neon.tech/dbname`)
+4. In Vercel/Render dashboard, add environment variable:
+   - **Key:** `DATABASE_URL`
+   - **Value:** Your Neon connection string
+5. Redeploy your app
+
+**Benefits:**
+- Free tier includes 0.5 GB storage
+- Data persists across redeployments
+- Automatic backups
+- Serverless scaling
+
 ## 📊 Database Schema
 
 ### Users Table
